@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* set box-sizing to border-box for all elements */
+* {
+  box-sizing: border-box;
+}
+:root::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: flex-start;
+  min-width: 320px;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 1rem 0 1rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.highlight {
+  color: #fff;
+  text-shadow: 1px 2px 1px #000000;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Light mode colors */
+.bg-primary { background-color: #2452a1; }
+.text-primary { color: #1D2A39; }
+.text-secondary { color: #4C5A6A; }
+.text-accent { color: #FF9A3E; }
+.border-color { border-color: #E0E4E9; }
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  .bg-primary { background-color: #1D2A39; }
+  .text-primary { color: #FFFFFF; }
+  .text-secondary { color: #9EAEC5; }
+  .text-accent { color: #FF9A3E; }
+  .border-color { border-color: #3C4856; }
+}
+
+/* Vue Transition Component - fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Vue Transition Component - smooth-resize */
+/* added *-move and pos:absolute to prevent 'jumping' */
+/* https://vuejs.org/guide/built-ins/transition-group.html#move-transitions */
+.smooth-resize-move,
+.smooth-resize-enter-active,
+.smooth-resize-leave-active {
+  transition: all 0.4s ease;
+}
+
+.smooth-resize-leave-active {
+  position: absolute;
+}
+
+.smooth-resize-enter-from,
+.smooth-resize-leave-to {
+  opacity: 0;
+  transform: scale(0.2);
+}
