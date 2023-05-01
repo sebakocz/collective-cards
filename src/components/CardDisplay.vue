@@ -20,7 +20,7 @@
                 <img :src="affinitySymbol" alt="Affinity Symbol" />
                 <div class="absolute -top-1 -left-1 h-[45px] w-[45px]">
                     <img
-                        src="/public/builder/tickring.png"
+                        src="/builder/tickring.png"
                         alt="Mana Cost"
                         class="absolute"
                     />
@@ -30,7 +30,7 @@
                 </div>
                 <img
                     v-if="card.exclusive"
-                    src="/public/builder/exclusive-star.png"
+                    src="/builder/exclusive-star.png"
                     class="absolute right-0.5 top-8 h-[25px] w-[25px]"
                     alt="Exclusive Star"
                 />
@@ -126,20 +126,20 @@ const props = defineProps<{
 
 const backgroundImg = computed(() =>
     props.card.type === CardType.Unit
-        ? '/public/builder/cardbackground-unit-small.png'
-        : '/public/builder/cardbackground-small.png'
+        ? '/builder/cardbackground-unit-small.png'
+        : '/builder/cardbackground-small.png'
 )
 
 const affinitySymbol = computed(() => {
     switch (props.card.affinity) {
         case CardAffinity.Strength:
-            return '/public/builder/redmanacircle.png'
+            return '/builder/redmanacircle.png'
         case CardAffinity.Mind:
-            return '/public/builder/bluemanacircle.png'
+            return '/builder/bluemanacircle.png'
         case CardAffinity.Spirit:
-            return '/public/builder/greenmanacircle.png'
+            return '/builder/greenmanacircle.png'
         default:
-            return '/public/builder/greymanacircle.png'
+            return '/builder/greymanacircle.png'
     }
 })
 
@@ -161,15 +161,15 @@ const abilityFontSize = computed(() => {
 const raritySymbol = computed(() => {
     switch (props.card.rarity) {
         case CardRarity.Common:
-            return '/public/builder/common.png'
+            return '/builder/common.png'
         case CardRarity.Uncommon:
-            return '/public/builder/uncommon.png'
+            return '/builder/uncommon.png'
         case CardRarity.Rare:
-            return '/public/builder/rare.png'
+            return '/builder/rare.png'
         case CardRarity.Legendary:
-            return '/public/builder/legendary.png'
+            return '/builder/legendary.png'
         default:
-            return '/public/builder/undraftable.png'
+            return '/builder/undraftable.png'
     }
 })
 </script>
