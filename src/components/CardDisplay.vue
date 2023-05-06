@@ -119,27 +119,36 @@ import {
     CardType,
 } from '@src/libs/api/collectiveDto'
 import { computed } from 'vue'
+import RarityCommon from '../../public/builder/common.png'
+import RarityUncommon from '../../public/builder/uncommon.png'
+import RarityRare from '../../public/builder/rare.png'
+import RarityLegendary from '../../public/builder/legendary.png'
+import RarityUndraftable from '../../public/builder/undraftable.png'
+import BackgroundUnit from '../../public/builder/cardbackground-unit-small.png'
+import BackgroundAction from '../../public/builder/cardbackground-small.png'
+import AffinityStrength from '../../public/builder/redmanacircle.png'
+import AffinityMind from '../../public/builder/bluemanacircle.png'
+import AffinitySpirit from '../../public/builder/greenmanacircle.png'
+import AffinityNeutral from '../../public/builder/greymanacircle.png'
 
 const props = defineProps<{
     card: Card
 }>()
 
 const backgroundImg = computed(() =>
-    props.card.type === CardType.Unit
-        ? '/builder/cardbackground-unit-small.png'
-        : '/builder/cardbackground-small.png'
+    props.card.type === CardType.Unit ? BackgroundUnit : BackgroundAction
 )
 
 const affinitySymbol = computed(() => {
     switch (props.card.affinity) {
         case CardAffinity.Strength:
-            return '/builder/redmanacircle.png'
+            return AffinityStrength
         case CardAffinity.Mind:
-            return '/builder/bluemanacircle.png'
+            return AffinityMind
         case CardAffinity.Spirit:
-            return '/builder/greenmanacircle.png'
+            return AffinitySpirit
         default:
-            return '/builder/greymanacircle.png'
+            return AffinityNeutral
     }
 })
 
@@ -161,15 +170,15 @@ const abilityFontSize = computed(() => {
 const raritySymbol = computed(() => {
     switch (props.card.rarity) {
         case CardRarity.Common:
-            return '/builder/common.png'
+            return RarityCommon
         case CardRarity.Uncommon:
-            return '/builder/uncommon.png'
+            return RarityUncommon
         case CardRarity.Rare:
-            return '/builder/rare.png'
+            return RarityRare
         case CardRarity.Legendary:
-            return '/builder/legendary.png'
+            return RarityLegendary
         default:
-            return '/builder/undraftable.png'
+            return RarityUndraftable
     }
 })
 </script>
