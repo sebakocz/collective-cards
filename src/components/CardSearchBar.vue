@@ -1,5 +1,7 @@
 <template>
-    <div class="relative mx-auto w-full bg-main-200 p-3 lg:w-10/12">
+    <div
+        class="relative mx-auto w-full bg-main-200 p-3 dark:bg-main-800 lg:w-10/12"
+    >
         <SearchIcon class="pointer-events-none absolute left-5 top-5" />
         <input
             type="text"

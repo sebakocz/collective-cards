@@ -1,5 +1,5 @@
 <template>
-    <div class="slider">
+    <div class="slider bg-main-400 dark:bg-main-700">
         <label
             class="option"
             :class="[selectedOption === 'unit' ? 'selected' : '']"
@@ -22,7 +22,7 @@
             Action
         </label>
         <div
-            class="slider-highlight"
+            class="slider-highlight bg-main-500 dark:bg-main-600"
             :style="{ left: highlightPosition }"
         ></div>
     </div>
@@ -78,7 +78,6 @@ const highlightPosition = computed(() => {
     justify-content: space-between;
     width: var(--slider-width);
     height: var(--slider-height);
-    background-color: #e4d6c1ff;
     border-radius: 20px;
     overflow: hidden;
 
@@ -109,7 +108,6 @@ const highlightPosition = computed(() => {
     left: 0;
     height: 100%;
     width: 33.33%;
-    background-color: #bfaf9bff;
     border-radius: 20px;
     transition: left 0.3s ease-out;
 }

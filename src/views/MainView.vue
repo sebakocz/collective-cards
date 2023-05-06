@@ -3,9 +3,9 @@
         <div
             v-for="route in navRoutes"
             :key="route.name"
-            class="flex w-full items-center justify-center rounded-t bg-main-200 p-3 text-xl sm:duration-200"
+            class="flex w-full items-center justify-center rounded-t bg-main-200 p-3 text-xl dark:bg-main-800 sm:duration-200"
             :class="{
-                'bg-main-50 mt-auto h-14 cursor-pointer hover:h-16 hover:bg-main-300':
+                'bg-main-50 mt-auto h-14 cursor-pointer hover:h-16 hover:bg-main-300 dark:hover:bg-main-700':
                     currentRouteIndex !== navRoutes.indexOf(route),
                 'h-16': currentRouteIndex === navRoutes.indexOf(route),
             }"
@@ -20,7 +20,7 @@
             }}
         </div>
     </div>
-    <div class="flex-grow overflow-hidden bg-main-200">
+    <div class="flex-grow overflow-hidden bg-main-200 dark:bg-main-800">
         <CardsView v-if="currentRouteIndex === 0" />
         <FilterView v-else-if="currentRouteIndex === 1" />
         <!--        <DeckView v-else-if="currentRouteIndex === 2" />-->
