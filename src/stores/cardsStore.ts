@@ -6,16 +6,49 @@ import { useFilter } from '@src/stores/filterStore'
 export const useCards = defineStore('cardsStore', () => {
     const allCards = ref<Card[]>([])
 
+    const format = ref<'standard' | 'legacy'>('standard')
+
+    const formatCards = computed(() => {
+        switch (format.value) {
+            case 'standard':
+                return allCards.value.filter((card) => card.state === 0)
+            default:
+                return allCards.value
+        }
+    })
+
+    const sortBy = ref<keyof Card>('cost')
+    const sortDirection = ref(1)
+
+    const sortedCards = computed(() => {
+        const cards = [...filteredCards.value]
+
+        cards.sort((a, b) => {
+            const aVal = a[sortBy.value]
+            const bVal = b[sortBy.value]
+
+            if (aVal === bVal) return 0
+            if (aVal === undefined) return 1
+            if (bVal === undefined) return -1
+
+            if (aVal > bVal) return sortDirection.value
+            if (aVal < bVal) return -sortDirection.value
+            return 0
+        })
+
+        return cards
+    })
+
     const filteredCards = computed(() => {
         const { searchQuery, cardFilters } = storeToRefs(useFilter())
 
         const searchQueryValue = searchQuery.value.toLowerCase()
         const result = []
 
-        for (let i = 0; i < allCards.value.length; i++) {
-            const cardName = allCards.value[i].name.toLowerCase()
-            const cardAbility = allCards.value[i].ability?.toLowerCase()
-            const cardTribe = allCards.value[i].tribe?.toLowerCase()
+        for (let i = 0; i < formatCards.value.length; i++) {
+            const cardName = formatCards.value[i].name.toLowerCase()
+            const cardAbility = formatCards.value[i].ability?.toLowerCase()
+            const cardTribe = formatCards.value[i].tribe?.toLowerCase()
 
             // Search Bar
             if (
@@ -38,13 +71,13 @@ export const useCards = defineStore('cardsStore', () => {
             // Filter Affinity
             if (
                 cardFilters.value.affinity &&
-                !cardFilters.value.affinity[allCards.value[i].affinity]
+                !cardFilters.value.affinity[formatCards.value[i].affinity]
             ) {
                 continue
             }
 
             // Filter Artist
-            const cardArtist = allCards.value[i].artist?.toLowerCase()
+            const cardArtist = formatCards.value[i].artist?.toLowerCase()
             if (
                 cardFilters.value.artist &&
                 (cardArtist === undefined ||
@@ -54,19 +87,19 @@ export const useCards = defineStore('cardsStore', () => {
             }
 
             // Filter Atk
-            const cardAtk = allCards.value[i].atk
+            const cardAtk = formatCards.value[i].atk
             if (cardFilters.value.atk && cardAtk !== cardFilters.value.atk) {
                 continue
             }
 
             // Filter Cost
-            const cardCost = allCards.value[i].cost
+            const cardCost = formatCards.value[i].cost
             if (cardFilters.value.cost && cardCost !== cardFilters.value.cost) {
                 continue
             }
 
             // Filter Creator
-            const cardCreator = allCards.value[i].creator?.toLowerCase()
+            const cardCreator = formatCards.value[i].creator?.toLowerCase()
             if (
                 cardFilters.value.creator &&
                 (cardCreator === undefined ||
@@ -80,11 +113,11 @@ export const useCards = defineStore('cardsStore', () => {
             // when star is unchecked, we don't want to show exclusive cards
             // when star is checked, we want to show exclusive cards in addition to non-exclusive cards
             if (!cardFilters.value.exclusive) {
-                if (allCards.value[i].exclusive) continue
+                if (formatCards.value[i].exclusive) continue
             }
 
             // Filter Hp
-            const cardHp = allCards.value[i].hp
+            const cardHp = formatCards.value[i].hp
             if (cardFilters.value.hp && cardHp !== cardFilters.value.hp) {
                 continue
             }
@@ -100,13 +133,13 @@ export const useCards = defineStore('cardsStore', () => {
             // Filter Rarity
             if (
                 cardFilters.value.rarity &&
-                !cardFilters.value.rarity[allCards.value[i].rarity]
+                !cardFilters.value.rarity[formatCards.value[i].rarity]
             ) {
                 continue
             }
 
             // Filter Realm
-            const cardRealm = allCards.value[i].realm?.toLowerCase()
+            const cardRealm = formatCards.value[i].realm?.toLowerCase()
             if (
                 cardFilters.value.realm &&
                 (cardRealm === undefined ||
@@ -127,20 +160,14 @@ export const useCards = defineStore('cardsStore', () => {
             // Filter Type
             if (
                 cardFilters.value.type &&
-                !cardFilters.value.type[allCards.value[i].type]
+                !cardFilters.value.type[formatCards.value[i].type]
             ) {
                 continue
             }
 
             // if all filters pass, add to result
-            result.push(allCards.value[i])
+            result.push(formatCards.value[i])
         }
-
-        // sort by cost, name
-        result.sort((a, b) => {
-            if (a.cost !== b.cost) return a.cost - b.cost
-            return a.name.localeCompare(b.name)
-        })
 
         return result
     })
@@ -148,5 +175,10 @@ export const useCards = defineStore('cardsStore', () => {
     return {
         allCards,
         filteredCards,
+        sortedCards,
+        formatCards,
+        format,
+        sortBy,
+        sortDirection,
     }
 })

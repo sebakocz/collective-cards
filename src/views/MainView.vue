@@ -15,7 +15,7 @@
                 route.name === 'Cards' &&
                 !isMobile &&
                 cardsStore.allCards.length
-                    ? `Cards (${cardsStore.filteredCards.length}/${cardsStore.allCards.length})`
+                    ? `Cards (${cardsStore.filteredCards.length}/${cardsStore.formatCards.length})`
                     : route.name
             }}
         </div>
@@ -42,8 +42,6 @@ const currentRouteIndex = ref(0)
 
 onMounted(async () => {
     await collectiveApi.loadCards()
-
-    //await runesStore.setupFilters()
 })
 </script>
 

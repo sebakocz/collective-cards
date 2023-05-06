@@ -5,6 +5,7 @@
         class="h-[90%] overflow-y-scroll p-2 will-change-transform"
         @scroll="onScroll"
     >
+        <CardsViewOptions />
         <div
             ref="scrollContainer"
             class="flex flex-wrap content-start justify-center"
@@ -36,8 +37,9 @@ import CardDisplay from '@src/components/CardDisplay.vue'
 import CardSearchBar from '@src/components/CardSearchBar.vue'
 import { storeToRefs } from 'pinia'
 import LoadingSpinner from '@src/components/LoadingSpinner.vue'
+import CardsViewOptions from '@src/components/CardsViewOptions.vue'
 
-const { allCards, filteredCards } = storeToRefs(useCards())
+const { allCards, sortedCards } = storeToRefs(useCards())
 
 const openLink = (link: string) => {
     window.open(link, '_blank')
@@ -49,5 +51,5 @@ const {
     onScroll,
     containerStyle,
     visibleList,
-} = useVirtualScroll(filteredCards)
+} = useVirtualScroll(sortedCards)
 </script>

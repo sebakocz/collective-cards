@@ -14,7 +14,7 @@ export type Card = {
     name: string
     rarity: CardRarity
     realm?: string
-    release?: number
+    release?: Date
     state?: number
     tribe?: string
     type: CardType

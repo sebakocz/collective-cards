@@ -18,7 +18,7 @@ type DbTimestamp = {
 
 interface SheetRow {
     c: {
-        v: string | number | boolean
+        v: string | number | boolean | Date
         f?: string
     }[]
 }
@@ -86,7 +86,9 @@ export const useCollectiveApi = () => {
                     name: card.c[0] ? (card.c[0].v as string) : '',
                     rarity: card.c[3].v as CardRarity,
                     realm: card.c[11] ? (card.c[11].v as string) : '',
-                    release_date: card.c[13] ? (card.c[13].v as string) : '',
+                    release: card.c[13]
+                        ? (card.c[13].v as Date)
+                        : new Date('1970-01-01'),
                     state: card.c[16] ? (card.c[16].v as number) : NaN,
                     tribe: card.c[10] ? (card.c[10].v as string) : '',
                     type: card.c[1].v as CardType,
