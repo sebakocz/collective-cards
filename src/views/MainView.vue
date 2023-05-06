@@ -23,7 +23,7 @@
     <div class="flex-grow overflow-hidden bg-main-200 dark:bg-main-800">
         <CardsView v-if="currentRouteIndex === 0" />
         <FilterView v-else-if="currentRouteIndex === 1" />
-        <!--        <DeckView v-else-if="currentRouteIndex === 2" />-->
+        <DeckView v-else-if="currentRouteIndex === 2" />
     </div>
 </template>
 
@@ -35,6 +35,7 @@ import { useCards } from '@src/stores/cardsStore'
 import { useMobileCheck } from '@src/composables/mobileCheck'
 import CardsView from '@src/views/CardsView.vue'
 import FilterView from '@src/views/FilterView.vue'
+import DeckView from '@src/views/DeckView.vue'
 const collectiveApi = useCollectiveApi()
 const cardsStore = useCards()
 const { isMobile } = useMobileCheck()

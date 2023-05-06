@@ -23,16 +23,14 @@ export const useCards = defineStore('cardsStore', () => {
     const sortedCards = computed(() => {
         const cards = [...filteredCards.value]
 
+        // default to sorting by cost, then name
         cards.sort((a, b) => {
-            const aVal = a[sortBy.value]
-            const bVal = b[sortBy.value]
-
-            if (aVal === bVal) return 0
-            if (aVal === undefined) return 1
-            if (bVal === undefined) return -1
-
-            if (aVal > bVal) return sortDirection.value
-            if (aVal < bVal) return -sortDirection.value
+            // @ts-expect-error TS2532
+            if (a[sortBy.value] > b[sortBy.value]) return sortDirection.value
+            // @ts-expect-error TS2532
+            if (a[sortBy.value] < b[sortBy.value]) return -sortDirection.value
+            if (a.name > b.name) return 1
+            if (a.name < b.name) return -1
             return 0
         })
 

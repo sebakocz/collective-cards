@@ -21,11 +21,12 @@
             </p>
             <CardDisplay
                 v-for="card in visibleList"
-                :key="card.uid"
+                :key="card.id"
                 :card="card"
-                class="cursor-pointer duration-200 hover:scale-105"
-                @click="openLink(card.link)"
-            />
+                class="duration-200 hover:scale-105"
+            >
+                <CardDisplayButtons :card="card" />
+            </CardDisplay>
         </div>
     </div>
 </template>
@@ -38,12 +39,8 @@ import CardSearchBar from '@src/components/CardSearchBar.vue'
 import { storeToRefs } from 'pinia'
 import LoadingSpinner from '@src/components/LoadingSpinner.vue'
 import CardsViewOptions from '@src/components/CardsViewOptions.vue'
-
+import CardDisplayButtons from '@src/components/CardDisplayButtons.vue'
 const { allCards, sortedCards } = storeToRefs(useCards())
-
-const openLink = (link: string) => {
-    window.open(link, '_blank')
-}
 
 const {
     scrollContainer,

@@ -107,6 +107,9 @@
                 class="absolute top-[55.5%] left-[46.5%] h-[15px] w-[15px]"
                 alt="Rarity Symbol"
             />
+
+            <!-- Space for buttons etc -->
+            <slot />
         </div>
     </div>
 </template>

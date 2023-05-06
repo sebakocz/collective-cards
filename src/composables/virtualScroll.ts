@@ -1,8 +1,10 @@
 import { computed, ComputedRef, onMounted, onUnmounted, ref } from 'vue'
 import debounce from 'lodash/debounce'
 
-const cardDisplayHeight = 476 * 0.65
-const cardDisplayWidth = 320 * 0.65
+// const cardDisplayHeight = 476 * 0.65
+// const cardDisplayWidth = 320 * 0.65
+const cardDisplayHeight = 325.4
+const cardDisplayWidth = 208
 // higher number = more items in buffer, smoother scrolling
 const bufferSize = 2
 
@@ -12,7 +14,7 @@ const bufferSize = 2
  * @param {ComputedRef<any[]>} inputList - A computed reference to the list of items to be displayed.
  * @returns {Object} An object containing necessary properties and methods for implementing virtual scrolling.
  */
-export const useVirtualScroll = (inputList: ComputedRef<any[]>) => {
+export const useVirtualScroll = (inputList: ComputedRef<unknown[]>) => {
     // Scroll(inner) and view(outer) containers references
     const scrollContainer = ref<HTMLElement>()
     const viewContainer = ref<HTMLElement>()
