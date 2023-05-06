@@ -28,7 +28,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useFilter } from '@src/stores/filterStore'
 import { CardType } from '@src/libs/api/collectiveDto'
 
@@ -46,6 +46,14 @@ const setOption = () => {
 
 const filterStore = useFilter()
 const selectedOption = ref(setOption())
+
+watch(
+    () => filterStore.cardFilters.type,
+    () => {
+        selectedOption.value = setOption()
+    },
+    { deep: true }
+)
 
 const handleClick = (option: string) => {
     selectedOption.value = option
