@@ -5,14 +5,16 @@
             Try adding some cards.
         </div>
         <div class="flex flex-wrap content-start justify-center">
-            <CardDisplay
-                v-for="{ card } in deckStore.deckCards"
-                :key="card.id"
-                :card="card"
-                class="duration-200 hover:scale-105"
-            >
-                <CardDisplayButtons :card="card" />
-            </CardDisplay>
+            <TransitionGroup name="smooth-resize">
+                <CardDisplay
+                    v-for="{ card } in deckStore.deckCards"
+                    :key="card.id"
+                    :card="card"
+                    class="duration-200 hover:scale-105"
+                >
+                    <CardDisplayButtons :card="card" />
+                </CardDisplay>
+            </TransitionGroup>
         </div>
     </div>
 </template>

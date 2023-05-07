@@ -20,7 +20,7 @@
                 Try changing your filters.
             </p>
             <CardDisplay
-                v-for="card in visibleList"
+                v-for="card in visibleList as Card[]"
                 :key="card.id"
                 :card="card"
                 class="duration-200 hover:scale-105"
@@ -40,6 +40,7 @@ import { storeToRefs } from 'pinia'
 import LoadingSpinner from '@src/components/LoadingSpinner.vue'
 import CardsViewOptions from '@src/components/CardsViewOptions.vue'
 import CardDisplayButtons from '@src/components/CardDisplayButtons.vue'
+import { Card } from '@src/libs/api/collectiveDto'
 const { allCards, sortedCards } = storeToRefs(useCards())
 
 const {
