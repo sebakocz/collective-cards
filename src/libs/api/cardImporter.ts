@@ -26,9 +26,7 @@ export const useCardImporter = () => {
         // example link: https://files.collective.gg/p/cards/728fa860-df5e-11ec-84d0-e3f041592924-s.png
         // example uid: 728fa860-df5e-11ec-84d0-e3f041592924
         const cardPromises = cardIdentifiers.map((line) => {
-            const uid = line.match(
-                /https:\/\/files.collective.gg\/p\/cards\/([a-z0-9-]+)-s.png/
-            )?.[1]
+            const uid = line.match(/[a-z0-9-]{36}/)?.[0]
 
             if (uid) {
                 return () => fetchCardByUid(uid)
@@ -44,6 +42,7 @@ export const useCardImporter = () => {
 
         Promise.all(limitedPromises)
             .then((cards) => {
+                // TODO: this seems hacky, would need to extend proper error handling and figure out why they are undefined in the first place
                 cards = cards.filter((card) => card)
                 cardStore.allCards.push(...(cards as Card[]))
             })
