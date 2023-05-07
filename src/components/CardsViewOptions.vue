@@ -13,6 +13,12 @@
                 :is-active="format === 'legacy'"
                 @click="updateFormat"
             />
+            <ChipItem
+                label="Custom"
+                value="custom"
+                :is-active="format === 'custom'"
+                @click="updateFormat"
+            />
         </div>
         <div class="flex flex-wrap items-center justify-center">
             <ChipItem

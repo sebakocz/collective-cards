@@ -6,12 +6,14 @@ import { useFilter } from '@src/stores/filterStore'
 export const useCards = defineStore('cardsStore', () => {
     const allCards = ref<Card[]>([])
 
-    const format = ref<'standard' | 'legacy'>('standard')
+    const format = ref<'standard' | 'legacy' | 'custom'>('standard')
 
     const formatCards = computed(() => {
         switch (format.value) {
             case 'standard':
                 return allCards.value.filter((card) => card.state === 0)
+            case 'custom':
+                return allCards.value.filter((card) => card.state === 9)
             default:
                 return allCards.value
         }

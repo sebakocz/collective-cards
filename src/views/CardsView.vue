@@ -13,12 +13,20 @@
         >
             <LoadingSpinner v-if="!allCards.length" />
             <p
-                v-if="!visibleList.length && allCards.length"
+                v-if="
+                    !visibleList.length &&
+                    allCards.length &&
+                    format !== 'custom'
+                "
                 class="mt-20 text-xl"
             >
                 No cards found. :( <br />
                 Try changing your filters.
             </p>
+            <CustomCardsInput
+                v-if="format === 'custom' && !formatCards.length"
+                class="my-10"
+            />
             <CardDisplay
                 v-for="card in visibleList as Card[]"
                 :key="card.id"
@@ -41,7 +49,8 @@ import LoadingSpinner from '@src/components/LoadingSpinner.vue'
 import CardsViewOptions from '@src/components/CardsViewOptions.vue'
 import CardDisplayButtons from '@src/components/CardDisplayButtons.vue'
 import { Card } from '@src/libs/api/collectiveDto'
-const { allCards, sortedCards } = storeToRefs(useCards())
+import CustomCardsInput from '@src/components/CustomCardsInput.vue'
+const { allCards, sortedCards, format, formatCards } = storeToRefs(useCards())
 
 const {
     scrollContainer,
