@@ -2,23 +2,24 @@
     <div class="w-52 p-2 text-white">
         <div class="relative mx-auto h-card-sm w-card-sm">
             <!-- Art -->
+            <!-- vue3-lazyloading's custom directive v-lazy is not recognizable -->
             <img
-                :src="card.image"
+                v-lazy="card.image"
                 alt="Card Art"
-                class="absolute top-[28.5%] left-1/2 -z-10 h-[120px] w-[150px] -translate-x-1/2 -translate-y-1/2 transform"
+                class="absolute left-1/2 top-[28.5%] -z-10 h-[120px] w-[150px] -translate-x-1/2 -translate-y-1/2 transform"
             />
 
             <!-- Background Unit/Action -->
             <img
-                class="absolute top-0 left-0"
+                class="absolute left-0 top-0"
                 :src="backgroundImg"
                 alt="Background Frame"
             />
 
             <!-- Mana Cost + Affinity + Exclusivity -->
-            <div class="absolute top-3.5 right-3.5 h-[37px] w-[37px]">
+            <div class="absolute right-3.5 top-3.5 h-[37px] w-[37px]">
                 <img :src="affinitySymbol" alt="Affinity Symbol" />
-                <div class="absolute -top-1 -left-1 h-[45px] w-[45px]">
+                <div class="absolute -left-1 -top-1 h-[45px] w-[45px]">
                     <img
                         src="/builder/tickring.png"
                         alt="Mana Cost"
@@ -104,7 +105,7 @@
             <img
                 v-if="card.rarity !== CardRarity.Undraftable"
                 :src="raritySymbol"
-                class="absolute top-[55.5%] left-[46.5%] h-[15px] w-[15px]"
+                class="absolute left-[46.5%] top-[55.5%] h-[15px] w-[15px]"
                 alt="Rarity Symbol"
             />
 
@@ -127,8 +128,8 @@ import RarityUncommon from '../../public/builder/uncommon.png'
 import RarityRare from '../../public/builder/rare.png'
 import RarityLegendary from '../../public/builder/legendary.png'
 import RarityUndraftable from '../../public/builder/undraftable.png'
-import BackgroundUnit from '../../public/builder/cardbackground-unit-small.png'
-import BackgroundAction from '../../public/builder/cardbackground-small.png'
+import BackgroundUnit from '../../public/builder/cardbackground-unit-small-min.png'
+import BackgroundAction from '../../public/builder/cardbackground-small-min.png'
 import AffinityStrength from '../../public/builder/redmanacircle.png'
 import AffinityMind from '../../public/builder/bluemanacircle.png'
 import AffinitySpirit from '../../public/builder/greenmanacircle.png'

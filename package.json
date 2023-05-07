@@ -15,7 +15,8 @@
     "lodash": "^4.17.21",
     "pinia": "^2.0.33",
     "vue": "^3.2.45",
-    "vue-chartjs": "^5.2.0"
+    "vue-chartjs": "^5.2.0",
+    "vue3-lazyload": "^0.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
