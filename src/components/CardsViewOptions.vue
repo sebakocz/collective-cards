@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-wrap justify-center gap-x-12">
-        <div class="flex flex-wrap items-center justify-center">
+    <div class="flex flex-grow flex-wrap items-center justify-evenly">
+        <div class="flex items-center justify-center">
             <ChipItem
                 label="Standard"
                 value="standard"
@@ -20,7 +20,7 @@
                 @click="updateFormat"
             />
         </div>
-        <div class="flex flex-wrap items-center justify-center">
+        <div class="relative flex items-center justify-center">
             <ChipItem
                 label="by Cost"
                 value="cost"
@@ -40,7 +40,7 @@
                 @click="updateSortBy"
             />
             <ArrowUpIcon
-                class="h-5 w-5 hover:cursor-pointer"
+                class="absolute -right-5 h-5 w-5 hover:cursor-pointer"
                 :class="{
                     'rotate-180': sortDirection === -1,
                 }"

@@ -1,8 +1,6 @@
 <template>
-    <div
-        class="relative mx-auto w-full bg-main-200 p-3 dark:bg-main-800 lg:w-10/12"
-    >
-        <SearchIcon class="pointer-events-none absolute left-5 top-5" />
+    <div class="relative flex-grow sm:min-w-[500px]">
+        <SearchIcon class="pointer-events-none absolute left-2 top-2" />
         <input
             type="text"
             class="w-full rounded p-2 pl-10 shadow"

@@ -1,36 +1,18 @@
 <template>
-    <div
-        class="absolute left-2 top-24 flex flex-col text-main-700 dark:text-main-400"
-    >
-        <ButtonItem @click="openLink(card.link)">
+    <div class="absolute left-2 top-2 flex flex-col">
+        <ButtonItem @click.stop="openLink(card.link)">
             <EyeIcon class="h-6 w-6" />
         </ButtonItem>
-        <ButtonItem
-            class="text-2xl"
-            :class="{
-                'pointer-events-none': deckStore.getCardCount(card) === 3,
-            }"
-            @click="deckStore.addCard(card)"
-        >
-            +
-        </ButtonItem>
-        <TransitionGroup name="slide-in">
+        <Transition name="fade">
             <ButtonItem
                 v-if="deckStore.getCardCount(card) > 0"
-                class="pointer-events-none text-2xl"
-                :style="{ '--i': 1 }"
+                @click.stop="deckStore.removeCard(card)"
             >
-                {{ deckStore.getCardCount(card) }}
+                <span class="text-shadow font-bold text-white">
+                    {{ deckStore.getCardCount(card) }}x
+                </span>
             </ButtonItem>
-            <ButtonItem
-                v-if="deckStore.getCardCount(card) > 0"
-                class="text-2xl"
-                :style="{ '--i': 2 }"
-                @click="deckStore.removeCard(card)"
-            >
-                -
-            </ButtonItem>
-        </TransitionGroup>
+        </Transition>
     </div>
 </template>
 <script setup lang="ts">
@@ -49,21 +31,3 @@ const openLink = (link: string) => {
     window.open(link, '_blank')
 }
 </script>
-
-<style scoped>
-:root {
-    --i: 0;
-}
-
-.slide-in-enter-active,
-.slide-in-leave-active {
-    transition: all 0.3s ease-in-out;
-    transition-delay: calc(0.2s / var(--i));
-}
-
-.slide-in-enter-from,
-.slide-in-leave-to {
-    opacity: 0;
-    transform: translateY(-30px);
-}
-</style>

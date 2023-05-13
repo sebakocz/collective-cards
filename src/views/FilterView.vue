@@ -1,5 +1,4 @@
 <template>
-    <RuneSearchBar />
     <div class="h-[90%]">
         <!-- Card Input Window -->
         <div class="relative mx-auto h-[476px] w-[320px] text-white">
@@ -12,7 +11,7 @@
             />
 
             <!-- Cost / Affinity / Exclusivity -->
-            <div class="absolute top-4 right-4">
+            <div class="absolute right-4 top-4">
                 <img
                     src="/builder/greymanacircle.png"
                     alt="Affinity Symbol"
@@ -21,7 +20,7 @@
 
                 <input
                     v-model.number="filterStore.cardFilters.cost"
-                    class="card-cost-ring filter-input card-display-text-stats absolute -top-1 -left-1 h-[58px] w-[58px] text-center"
+                    class="card-cost-ring filter-input card-display-text-stats absolute -left-1 -top-1 h-[58px] w-[58px] text-center"
                     placeholder="-"
                 />
 
@@ -59,21 +58,21 @@
             <!-- Name -->
             <DebouncedControl
                 v-model="filterStore.cardFilters.name"
-                class="filter-input background-none card-display-text-name absolute top-[220px] left-[60px] h-[25px] w-[200px] text-center"
+                class="filter-input background-none card-display-text-name absolute left-[60px] top-[220px] h-[25px] w-[200px] text-center"
                 placeholder="(Name)"
             />
 
             <!-- Tribes -->
             <DebouncedControl
                 v-model="filterStore.cardFilters.tribe"
-                class="filter-input background-none card-display-text-normal absolute top-[245px] left-[55px] h-[20px] w-[120px] text-center"
+                class="filter-input background-none card-display-text-normal absolute left-[55px] top-[245px] h-[20px] w-[120px] text-center"
                 placeholder="(Tribes)"
             />
 
             <!-- Realm -->
             <DebouncedControl
                 v-model="filterStore.cardFilters.realm"
-                class="filter-input background-none card-display-text-normal absolute top-[245px] left-[180px] h-[20px] w-[80px] text-center"
+                class="filter-input background-none card-display-text-normal absolute left-[180px] top-[245px] h-[20px] w-[80px] text-center"
                 placeholder="(Realm)"
             />
 
@@ -81,7 +80,7 @@
             <DebouncedControl
                 v-model="filterStore.cardFilters.ability"
                 type="textarea"
-                class="filter-input background-none card-display-text-ability absolute top-[290px] left-[65px] h-[110px] w-[190px] text-center"
+                class="filter-input background-none card-display-text-ability absolute left-[65px] top-[290px] h-[110px] w-[190px] text-center"
                 placeholder="(Ability Text)"
             />
 
@@ -115,7 +114,7 @@
 
             <!-- Rarity -->
             <div
-                class="absolute top-[265px] left-[88px] flex h-[25px] w-full gap-1"
+                class="absolute left-[88px] top-[265px] flex h-[25px] w-full gap-1"
             >
                 <img
                     v-for="rarity in rarities"
@@ -136,17 +135,17 @@
         </div>
 
         <ActionUnitPicker class="mx-auto mb-5" />
+
+        <ButtonItem
+            class="mx-auto h-10 w-10 bg-alert-400 p-2 hover:bg-alert-500"
+            @click="filterStore.resetFilters"
+        >
+            <TrashIcon />
+        </ButtonItem>
     </div>
-    <button
-        class="focus:ring-orange-400 sticky bottom-0 w-[99%] rounded bg-blue-600 py-2 font-semibold text-white shadow-sm focus:outline-none focus:ring-2"
-        @click="filterStore.resetFilters"
-    >
-        Reset Filters
-    </button>
 </template>
 
 <script setup lang="ts">
-import RuneSearchBar from '@src/components/CardSearchBar.vue'
 import DebouncedControl from '@src/components/DebouncedControl.vue'
 import { useFilter } from '@src/stores/filterStore'
 import ActionUnitPicker from '@src/components/ActionUnitPicker.vue'
@@ -159,6 +158,8 @@ import AffinityStrength from '../../public/builder/redmanacircle.png'
 import AffinityMind from '../../public/builder/bluemanacircle.png'
 import AffinitySpirit from '../../public/builder/greenmanacircle.png'
 import AffinityNeutral from '../../public/builder/greymanacircle.png'
+import ButtonItem from '@src/components/ButtonItem.vue'
+import TrashIcon from '@src/assets/icons/TrashIcon.vue'
 
 const affinities = [
     { key: 'Strength', image: AffinityStrength },

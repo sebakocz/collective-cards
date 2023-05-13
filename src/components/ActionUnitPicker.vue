@@ -1,28 +1,28 @@
 <template>
-    <div class="slider bg-main-400 dark:bg-main-700">
+    <div class="slider bg-primary-400 dark:bg-primary-700">
         <label
             class="option"
-            :class="[selectedOption === 'unit' ? 'selected' : '']"
+            :class="[selectedOption === 'unit' ? 'selected text-shadow' : '']"
             @click="handleClick('unit')"
         >
             Unit
         </label>
         <label
             class="option"
-            :class="[selectedOption === 'both' ? 'selected' : '']"
+            :class="[selectedOption === 'both' ? 'selected text-shadow' : '']"
             @click="handleClick('both')"
         >
             Both
         </label>
         <label
             class="option"
-            :class="[selectedOption === 'action' ? 'selected' : '']"
+            :class="[selectedOption === 'action' ? 'selected text-shadow' : '']"
             @click="handleClick('action')"
         >
             Action
         </label>
         <div
-            class="slider-highlight bg-main-500 dark:bg-main-600"
+            class="slider-highlight bg-primary-500 dark:bg-primary-600"
             :style="{ left: highlightPosition }"
         ></div>
     </div>

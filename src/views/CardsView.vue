@@ -1,11 +1,15 @@
 <template>
-    <CardSearchBar />
+    <div
+        class="relative mx-auto flex flex-wrap gap-3 bg-secondary-200 p-3 dark:bg-secondary-900"
+    >
+        <CardSearchBar />
+        <CardsViewOptions />
+    </div>
     <div
         ref="viewContainer"
         class="h-[90%] overflow-y-scroll p-2 will-change-transform"
         @scroll="onScroll"
     >
-        <CardsViewOptions />
         <div
             ref="scrollContainer"
             class="flex flex-wrap content-start justify-center"
@@ -31,7 +35,8 @@
                 v-for="card in visibleList as Card[]"
                 :key="card.id"
                 :card="card"
-                class="duration-200 hover:scale-105"
+                class="cursor-pointer duration-200 hover:scale-105"
+                @click="deckStore.addCard(card)"
             >
                 <CardDisplayButtons :card="card" />
             </CardDisplay>
@@ -50,7 +55,10 @@ import CardsViewOptions from '@src/components/CardsViewOptions.vue'
 import CardDisplayButtons from '@src/components/CardDisplayButtons.vue'
 import { Card } from '@src/libs/api/collectiveDto'
 import CustomCardsInput from '@src/components/CustomCardsInput.vue'
+import { useDeck } from '@src/stores/deckStore'
+
 const { allCards, sortedCards, format, formatCards } = storeToRefs(useCards())
+const deckStore = useDeck()
 
 const {
     scrollContainer,

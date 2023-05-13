@@ -1,14 +1,14 @@
 <template>
     <div
-        class="m-1 flex h-8 w-24 items-center justify-center rounded-full bg-main-300 dark:bg-main-700"
+        class="m-1 flex h-8 w-20 select-none items-center justify-center rounded-full bg-primary-200 shadow transition-colors dark:bg-primary-600 sm:w-24"
         :class="{
-            'bg-main-400 dark:bg-main-600': isActive,
-            'cursor-pointer hover:bg-main-400 dark:hover:bg-main-600':
+            'outline outline-primary-500': isActive,
+            'cursor-pointer hover:bg-primary-300 dark:hover:bg-primary-700':
                 !isActive,
         }"
         @click="handleClick"
     >
-        <span class="text-sm font-semibold text-main-700 dark:text-main-500">
+        <span class="text-sm font-semibold">
             {{ label }}
         </span>
     </div>
