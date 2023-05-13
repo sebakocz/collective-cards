@@ -63,7 +63,9 @@ export const useCards = defineStore('cardsStore', () => {
             if (
                 cardFilters.value.ability &&
                 (cardAbility === undefined ||
-                    !cardAbility.includes(cardFilters.value.ability))
+                    !cardAbility.includes(
+                        cardFilters.value.ability.toLowerCase()
+                    ))
             ) {
                 continue
             }
@@ -81,7 +83,9 @@ export const useCards = defineStore('cardsStore', () => {
             if (
                 cardFilters.value.artist &&
                 (cardArtist === undefined ||
-                    !cardArtist.includes(cardFilters.value.artist))
+                    !cardArtist.includes(
+                        cardFilters.value.artist.toLowerCase()
+                    ))
             ) {
                 continue
             }
@@ -103,7 +107,9 @@ export const useCards = defineStore('cardsStore', () => {
             if (
                 cardFilters.value.creator &&
                 (cardCreator === undefined ||
-                    !cardCreator.includes(cardFilters.value.creator))
+                    !cardCreator.includes(
+                        cardFilters.value.creator.toLowerCase()
+                    ))
             ) {
                 continue
             }
@@ -125,7 +131,7 @@ export const useCards = defineStore('cardsStore', () => {
             // Filter Name
             if (
                 cardFilters.value.name &&
-                !cardName.includes(cardFilters.value.name)
+                !cardName.includes(cardFilters.value.name.toLowerCase())
             ) {
                 continue
             }
@@ -152,7 +158,7 @@ export const useCards = defineStore('cardsStore', () => {
             if (
                 cardFilters.value.tribe &&
                 (cardTribe === undefined ||
-                    !cardTribe.includes(cardFilters.value.tribe))
+                    !cardTribe.includes(cardFilters.value.tribe.toLowerCase()))
             ) {
                 continue
             }
