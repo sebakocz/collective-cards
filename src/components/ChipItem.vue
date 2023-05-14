@@ -20,7 +20,9 @@ const props = defineProps<{
     isActive?: boolean
 }>()
 
-const emit = defineEmits(['click'])
+const emit = defineEmits<{
+    click: [value: unknown]
+}>()
 
 const handleClick = () => {
     emit('click', props.value)
