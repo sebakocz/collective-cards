@@ -56,30 +56,29 @@
             </div>
 
             <!-- Name -->
-            <DebouncedControl
+            <DebouncedInput
                 v-model="filterStore.cardFilters.name"
                 class="filter-input background-none card-display-text-name absolute left-[60px] top-[220px] h-[25px] w-[200px] text-center"
                 placeholder="(Name)"
             />
 
             <!-- Tribes -->
-            <DebouncedControl
+            <DebouncedInput
                 v-model="filterStore.cardFilters.tribe"
                 class="filter-input background-none card-display-text-normal absolute left-[55px] top-[245px] h-[20px] w-[120px] text-center"
                 placeholder="(Tribes)"
             />
 
             <!-- Realm -->
-            <DebouncedControl
+            <DebouncedInput
                 v-model="filterStore.cardFilters.realm"
                 class="filter-input background-none card-display-text-normal absolute left-[180px] top-[245px] h-[20px] w-[80px] text-center"
                 placeholder="(Realm)"
             />
 
             <!-- Ability -->
-            <DebouncedControl
+            <DebouncedTextarea
                 v-model="filterStore.cardFilters.ability"
-                type="textarea"
                 class="filter-input background-none card-display-text-ability absolute left-[65px] top-[290px] h-[110px] w-[190px] text-center"
                 placeholder="(Ability Text)"
             />
@@ -99,14 +98,14 @@
             />
 
             <!-- Creator -->
-            <DebouncedControl
+            <DebouncedInput
                 v-model="filterStore.cardFilters.creator"
                 class="filter-input background-none card-display-text-normal absolute bottom-[47px] left-[100px] h-[15px] w-[130px] text-center"
                 placeholder="(Creator)"
             />
 
             <!-- Artist -->
-            <DebouncedControl
+            <DebouncedInput
                 v-model="filterStore.cardFilters.artist"
                 class="filter-input background-none card-display-text-normal absolute bottom-[33px] left-[100px] h-[15px] w-[130px] text-center"
                 placeholder="(Artist)"
@@ -146,7 +145,7 @@
 </template>
 
 <script setup lang="ts">
-import DebouncedControl from '@src/components/DebouncedControl.vue'
+import DebouncedInput from '@src/components/DebouncedInput.vue'
 import { useFilter } from '@src/stores/filterStore'
 import ActionUnitPicker from '@src/components/ActionUnitPicker.vue'
 import RarityCommon from '../../public/builder/common.png'
@@ -160,6 +159,7 @@ import AffinitySpirit from '../../public/builder/greenmanacircle.png'
 import AffinityNeutral from '../../public/builder/greymanacircle.png'
 import ButtonItem from '@src/components/ButtonItem.vue'
 import TrashIcon from '@src/assets/icons/TrashIcon.vue'
+import DebouncedTextarea from '@src/components/DebouncedTextarea.vue'
 
 const affinities = [
     { key: 'Strength', image: AffinityStrength },
